@@ -13,6 +13,19 @@ node{
     git 'https://github.com/rambrij/simple-java-maven-app.git'
     echo 'after clone'
   }
+  
+   stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml'
+                }
+            }
+        }
+  
+  
   //stage('Compile-Package'){
   //  sh 'mvn package'
   //}
